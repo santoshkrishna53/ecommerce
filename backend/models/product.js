@@ -19,4 +19,4 @@ let product = new Schema({
    collection: 'products'
 })
 
-module.exports = mongoose.model('Employee', Employee)
+module.exports = mongoose.model('products', product)
