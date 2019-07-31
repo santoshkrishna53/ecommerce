@@ -30,7 +30,7 @@ app.use(bodyParser.urlencoded({
    extended: false
 }));
 app.use(cors()); 
-app.use('/api', employeeRoute)
+app.use('/api', api)
 app.use('/user',userroute)
 
 // Create port

@@ -12,6 +12,9 @@ import { RegisterComponent } from './register/register.component';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material';
+import {MatCardModule} from '@angular/material/card';
+import { HttpClientModule } from '@angular/common/http';
+
 
 
 @NgModule({
@@ -30,7 +33,9 @@ import {MatInputModule} from '@angular/material';
     MatBadgeModule,
     MatButtonToggleModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatCardModule,
+    HttpClientModule
     
 
   ],

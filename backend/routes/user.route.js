@@ -15,4 +15,4 @@ user_route.route('/').get((req, res) => {
   })
 })
 
-module.exports = employeeRoute;
+module.exports = user_route;
