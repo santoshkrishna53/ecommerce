@@ -1,7 +1,22 @@
-<p>products works!</p>
-<div *ngFor="let dat of products" >
-                {{dat.name}}
-            </div>
+<div class="row">
+        <div class="col-md-4 main-card"  *ngFor="let product of products">
+                <figure class="card card-product">
+                    <div class="img-wrap"><img src="https://img.icons8.com/officel/100/000000/book.png"></div>
+                    <figcaption class="info-wrap">
+                            <h4 class="title">{{product.name}}</h4>
+                            <p class="desc">{{product.description}}</p>
+                            <div class="rating-wrap">
+                                <div class="label-rating">132 reviews</div>
+                                <div class="label-rating">154 orders </div>
+                            </div> <!-- rating-wrap.// -->
+                    </figcaption>
+                    <div class="bottom-wrap">
+                        <a href="" class="btn btn-sm btn-primary float-right">Order Now</a>	
+                        <div class="price-wrap h5">
+                            <span class="price-new">{{product.price}}</span> <del class="price-old">$1980</del>
+                        </div> <!-- price-wrap.// -->
+                    </div> <!-- bottom-wrap.// -->
+                </figure>
+            </div> <!-- col // -->
 
-
-
+</div>

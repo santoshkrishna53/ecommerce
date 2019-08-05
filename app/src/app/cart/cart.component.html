@@ -1,0 +1,24 @@
+<p>cart works!</p>
+<div class="row" style="max-width: 50%;margin: auto;">
+    <div class="col-md-12">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Product</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let product of products">
+                    <th>{{product.name}}</th>
+                    <th scope="col">{{product.price}}</th>
+                    <th scope="col">1</th>
+                    <th scope="col">{{product.price}}</th>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>

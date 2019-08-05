@@ -15,6 +15,8 @@ import {MatInputModule} from '@angular/material';
 import {MatCardModule} from '@angular/material/card';
 import { HttpClientModule } from '@angular/common/http';
 import { ProductsComponent } from './products/products.component';
+import { CartComponent } from './cart/cart.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -25,6 +27,7 @@ import { ProductsComponent } from './products/products.component';
     HeaderComponent,
     RegisterComponent,
     ProductsComponent,
+    CartComponent,
    
   ],
   imports: [
@@ -38,7 +41,9 @@ import { ProductsComponent } from './products/products.component';
     MatFormFieldModule,
     MatInputModule,
     MatCardModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
     
 
   ],

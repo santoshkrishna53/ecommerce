@@ -7,10 +7,11 @@
         <mat-card-title style="text-align: center;margin-top: 25px;color: rgba(0, 0, 0, 0.568)">{{group.value}}</mat-card-title>
         <mat-card-content style="vertical-align: middle;">
                 <div class="register"  *ngIf="group.value == 'signup'" [@inOutAnimation] style="text-align: center;">
+                    <form [formGroup]="registerForm">
                         
                                 <mat-form-field appearance="outline">
                                     <mat-label>Email adress</mat-label>
-                                    <input matInput placeholder="Placeholder">
+                                    <input matInput placeholder="Placeholder" formControlName="email">
                                 </mat-form-field>
                            
                         
@@ -27,22 +28,24 @@
                            
                                 <mat-form-field appearance="outline">
                                     <mat-label>Password</mat-label>
-                                    <input matInput placeholder="Password" type="password">
+                                    <input matInput placeholder="Password" type="password" formControlName="password">
                                 </mat-form-field>
                                 <br>
-                                <button mat-raised-button color="primary">Sign Up</button>
+                                <button mat-raised-button color="primary" (click)="signup()">Sign Up</button>
                     
-                               
+                            </form>   
             
                         </div>
                         
             
                    
-                    <div class="login"  *ngIf="group.value == 'login'" [@inOutAnimation] style="text-align: center;vertical-align: middle;">
+                        <form [formGroup]="loginform">
+                        <div class="login"  *ngIf="group.value == 'login'" [@inOutAnimation] style="text-align: center;vertical-align: middle;">
+                        
                            
                                             <mat-form-field appearance="outline">
                                                     <mat-label>User id or Email</mat-label>
-                                                    <input matInput placeholder="Password">
+                                                    <input matInput placeholder="username" formControlName="username">
                                             </mat-form-field>
                                             <br>
                         
@@ -50,16 +53,18 @@
                                   
                                             <mat-form-field appearance="outline">
                                                     <mat-label>Password</mat-label>
-                                                    <input matInput placeholder="Password" type="password">
+                                                    <input matInput placeholder="Password" type="password" formControlName="password">
                                                 </mat-form-field>
                                                 <br>
                         
                         
                                    
-                                            <button mat-raised-button color="primary">Login</button>
+                                            <button mat-raised-button color="primary" (click)="login()">Login</button>
+                                          
                         
                                    
                             </div>
+                        </form>
                 
 
         </mat-card-content>

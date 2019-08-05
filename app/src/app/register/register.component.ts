@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { trigger, transition, style, animate } from '@angular/animations';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-register',
@@ -34,6 +35,34 @@ export class RegisterComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+  }
+  registerForm: FormGroup = new FormGroup({
+    email: new FormControl(null,[Validators.email,Validators.required]),
+    username: new FormControl(null,Validators.required),
+    password: new FormControl(null,Validators.required)
+
+
+  })
+  loginform: FormGroup = new FormGroup({
+    username: new FormControl(null,Validators.required),
+    password: new FormControl(null,Validators.required)
+  })
+  signup(){
+    if(this.registerForm.valid){
+      console.log(JSON.stringify(this.registerForm.value));
+
+    }
+    console.log('NOT VSALID')
+  }
+  login(){
+    console.log("test worked")
+    if(this.loginform.valid){
+      console.log("valid");
+      console.log(JSON.stringify(this.loginform.value));
+
+    }
+    console.log('NOT VSALID')
+
   }
 
 }

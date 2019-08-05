@@ -14,7 +14,13 @@ let product = new Schema({
     },
     description: {
         type: String
-     }
+     },
+     Price: {
+      type: Number
+      },
+      Discount : {
+         type: Number
+      }
 }, {
    collection: 'products'
 })
