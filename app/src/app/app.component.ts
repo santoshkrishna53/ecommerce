@@ -13,7 +13,7 @@ export class AppComponent implements OnInit {
   configUrl = "http://localhost:4000/api/prod";
   constructor(private http: HttpClient) { }
   ngOnInit() {
-    this.get_products();
+    // this.get_products();
 
     
 
