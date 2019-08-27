@@ -15,4 +15,13 @@ export class UserService {
     });
 
   }
+
+  login(body: any){
+    return this.http.post('http://localhost:4000/user/login',body,{
+      observe: 'body',
+      withCredentials: true,
+      headers : new HttpHeaders().append('content-Type','application/json')
+    });
+
+  }
 }

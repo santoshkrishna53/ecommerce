@@ -5,6 +5,35 @@ let express = require('express'),
    bodyParser = require('body-parser'),
    dbConfig = require('./database/db');
 
+   var passport = require('passport');
+   var session = require('express-session');
+   const app = express();
+
+
+   
+   app.use(session(
+   {
+      name: 'name.sid',
+      resave: false,
+      saveUninitialized: false,
+      secret: 'secret',
+      cookie: {
+         maxAge: 3600000,
+         httpOnly: false,
+         secure: false
+
+      }
+   }
+));
+
+require('./passport');
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+
+
+
 // Connecting with mongo db
 mongoose.Promise = global.Promise;
 mongoose.connect(dbConfig.db, {
@@ -24,7 +53,7 @@ const userroute = require('../backend/routes/user.route')
 
 // Setting up port with express js
 
-const app = express();
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
    extended: false
