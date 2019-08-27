@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { trigger, transition, style, animate } from '@angular/animations';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-register',
@@ -32,7 +33,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class RegisterComponent implements OnInit {
 
-  constructor() { }
+  constructor(private userservice: UserService) { }
 
   ngOnInit() {
   }
@@ -48,8 +49,15 @@ export class RegisterComponent implements OnInit {
     password: new FormControl(null,Validators.required)
   })
   signup(){
+    console.log(this.registerForm)
     if(this.registerForm.valid){
-      console.log(JSON.stringify(this.registerForm.value));
+
+      console.log("valid");
+      this.userservice.register(JSON.stringify(this.registerForm.value))
+      .subscribe(
+        data => {console.log(data);},
+        error =>{ console.log(error)}
+      )
 
     }
     console.log('NOT VSALID')
