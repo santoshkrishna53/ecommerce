@@ -10,13 +10,13 @@ export class SharedDataService {
 
 
 
-  public getStudents(): any {
-    const studentsObservable = new Observable(observer => {
+  public getProducts(): any {
+    const products = new Observable(observer => {
       this.httpClient.post("http://localhost:4000/api/prod",'').subscribe(data  => {observer.next(data)},error  => {console.log("Error", error);});
           
     });
 
-    return studentsObservable;
+    return products;
 }
 
  

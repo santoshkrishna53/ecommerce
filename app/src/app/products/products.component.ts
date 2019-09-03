@@ -14,8 +14,8 @@ export class ProductsComponent implements OnInit {
   constructor( private httpClient: HttpClient,private share: SharedDataService) { }
   ngOnInit() {
     
-    const studentsObservable = this.share.getStudents();
-        studentsObservable.subscribe((studentsData) => {
+    const product = this.share.getProducts();
+    product.subscribe((studentsData) => {
             for(var data in studentsData){
               this.products.push(studentsData[data]);
             }
@@ -24,5 +24,6 @@ export class ProductsComponent implements OnInit {
         console.log(this.products)
 
   }
+  
 }
   

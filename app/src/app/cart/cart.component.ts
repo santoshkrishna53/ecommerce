@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {SharedDataService} from '../shared-data.service'
+import {SharedDataService} from '../shared-data.service';
+import {UserService} from "../user.service";
 
 @Component({
   selector: 'app-cart',
@@ -9,16 +10,19 @@ import {SharedDataService} from '../shared-data.service'
 export class CartComponent implements OnInit {
   products=[];
 
-  constructor(private share: SharedDataService) { }
+  constructor(private share: SharedDataService,private userservuce: UserService) { }
 
   ngOnInit() {
-    const studentsObservable = this.share.getStudents();
-        studentsObservable.subscribe((studentsData) => {
-            for(var data in studentsData){
-              this.products.push(studentsData[data]);
+    const product = this.share.getProducts();
+    product.subscribe((pro) => {
+            for(var data in pro){
+              this.products.push(pro[data]);
             }
             console.log(this.products)
         });
+
+  
+  
   }
 
 }
