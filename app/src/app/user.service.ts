@@ -28,8 +28,18 @@ export class UserService {
     return this.http.post('http://localhost:4000/user/login',body,{
       observe: 'body',
       headers : new HttpHeaders().append('content-Type','application/json'),
-      
+      withCredentials: true
     });
 
+    
+
+  }
+  logintest(body: any){
+    return this.http.post('http://localhost:4000/user/profile',body,{
+      observe: 'body',
+      headers : new HttpHeaders().append('content-Type','application/json'),
+      withCredentials: true
+      
+    });
   }
 }

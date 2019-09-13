@@ -62,8 +62,15 @@ export class RegisterComponent implements OnInit {
     }
     console.log('NOT VSALID')
   }
+  logintest(){
+    this.userservice.logintest(JSON.stringify(this.loginform.value))
+    .subscribe(
+      data => {console.log("session da");console.log(data)},
+      error =>{ console.log(error)}
+    )
+  }
   login(){
-    console.log("test worked");
+    
     if(this.loginform.valid){
 
       console.log("valid");
@@ -72,6 +79,9 @@ export class RegisterComponent implements OnInit {
         data => {console.log(data)},
         error =>{ console.log(error)}
       )
+
+     
+      
 
     }
   }

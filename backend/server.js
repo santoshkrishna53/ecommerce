@@ -1,23 +1,36 @@
-let express = require('express'),
-   path = require('path'),
-   mongoose = require('mongoose'),
-   cors = require('cors'),
-   bodyParser = require('body-parser'),
-   dbConfig = require('./database/db');
-
- 
-   var session = require('express-session');
-   const app = express();
+var express = require('express');
+var path = require('path');
+var mongoose = require('mongoose')
+var cors = require('cors')
+var logger = require('morgan');
+var cookieParser = require('cookie-parser');
+var bodyParser = require('body-parser');
+var dbConfig = require('./database/db')
+var session = require('express-session');
+const app = express();
+var passport = require('passport');
+var MemoryStore =session.MemoryStore;
+   
 
 
    
-   app.use(session({secret: 'secret',saveUninitialized: true,resave: true}));
+   
 
 
 
 
 
 
+const sessionPaths = ['/user/profile', '/user/login'];
+
+app.use(logger('dev'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+
+
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(sessionPaths,session({secret: 'max', saveUninitialized: false, resave: false, store: new MemoryStore(),name: 'app.sid'}));
 
 
 // Connecting with mongo db
@@ -37,6 +50,29 @@ mongoose.connect(dbConfig.db, {
 const api = require('../backend/routes/api.route')
 const userroute = require('../backend/routes/user.route')
 
+
+
+
+
+
+app.use(function(req, res, next) {
+
+   //to allow cross domain requests to send cookie information.
+   res.header('Access-Control-Allow-Credentials', true);
+   
+   // origin can not be '*' when crendentials are enabled. so need to set it to the request origin
+   res.header('Access-Control-Allow-Origin',  req.headers.origin);
+   
+   // list of methods that are supported by the server
+   res.header('Access-Control-Allow-Methods','OPTIONS,GET,PUT,POST,DELETE');
+   
+   res.header('Access-Control-Allow-Headers', 'X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept');
+   
+   next();
+   });
+
+   
+
 // Setting up port with express js
 
 
@@ -44,7 +80,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
    extended: false
 }));
-app.use(cors()); 
+app.use(cors({ credentials: true, origin: true }))
 app.use('/api', api)
 app.use('/user',userroute)
 
@@ -54,6 +90,9 @@ const port = process.env.PORT || 4000;
 const server = app.listen(port, () => {
   console.log('Connected to port ' + port)
 })
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 // Find 404 and hand over to error handler
 app.use((req, res, next) => {

@@ -11,6 +11,8 @@ var bcrypt = require('bcryptjs');
 
 
 
+
+
 app.use(cors({
   origin: ['http://localhost:4200','http://127.0.0.1:4200/'],
   // credentials: true
@@ -37,7 +39,7 @@ user_route.post('/register',function(req,res,next){
 })
 
 user_route.post('/login',(req,res) => {
-
+  
   console.log(req.body.username);
   User.findOne({ email: req.body.username }, function (err, user) {
     var response = {
@@ -60,7 +62,10 @@ user_route.post('/login',(req,res) => {
       console.log("logined");
       sess = req.session;
       sess.email = req.body.username;
+      req.session.save();
       response.message = "logined";
+      console.log("log session");
+      console.log(req.session);
       res.status(201).json(user)
     }
      
@@ -78,6 +83,22 @@ user_route.post('/login',(req,res) => {
   
   
 });
+
+user_route.post('/profile',(req,res) => {
+  var response = {
+    message: null,
+    sessstatus: false
+  }
+  sess = req.session;
+  console.log("sess");
+  console.log(req.sessionStore.sessions);
+  // console.log(req.session);
+  console.log(req.sessionID);
+  console.log(req.session.email);
+  response.message = sess.email;
+  response.sessstatus = true;
+  res.status(201).json(response)
+})
 
 async function adduser(req,res){
   var user = new User({
