@@ -10,29 +10,13 @@ var session = require('express-session');
 const app = express();
 var passport = require('passport');
 var MemoryStore =session.MemoryStore;
-   
-
-
-   
-   
-
-
-
-
-
-
-const sessionPaths = ['/user/profile', '/user/login'];
-
+const sessionPaths = ['/auth/profile', '/auth/login'];
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-
-
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(sessionPaths,session({secret: 'max', saveUninitialized: false, resave: false, store: new MemoryStore(),name: 'app.sid'}));
-
-
 // Connecting with mongo db
 mongoose.Promise = global.Promise;
 mongoose.connect(dbConfig.db, {
@@ -44,16 +28,6 @@ mongoose.connect(dbConfig.db, {
       console.log('Database could not connected: ' + error)
    }
 )
-
-//Routes 
-
-const api = require('../backend/routes/api.route')
-const userroute = require('../backend/routes/user.route')
-
-
-
-
-
 
 app.use(function(req, res, next) {
 
@@ -71,7 +45,7 @@ app.use(function(req, res, next) {
    next();
    });
 
-   
+
 
 // Setting up port with express js
 
@@ -81,8 +55,13 @@ app.use(bodyParser.urlencoded({
    extended: false
 }));
 app.use(cors({ credentials: true, origin: true }))
+//Routes 
+const api = require('../backend/routes/api.route')
+// const userroute = require('../backend/routes/user.route')
+const auth = require('./routes/auth.route');
 app.use('/api', api)
-app.use('/user',userroute)
+// app.use('/user',userroute)
+app.use('/auth',auth)
 
 // Create port
 

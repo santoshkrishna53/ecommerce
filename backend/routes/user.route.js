@@ -13,10 +13,7 @@ var bcrypt = require('bcryptjs');
 
 
 
-app.use(cors({
-  origin: ['http://localhost:4200','http://127.0.0.1:4200/'],
-  // credentials: true
-}));
+
 
 var sess;
 

@@ -17,7 +17,7 @@ export class UserService {
  
 
   register(body: any){
-    return this.http.post('http://localhost:4000/user/register',body,{
+    return this.http.post('http://localhost:4000/auth/register',body,{
       observe: 'body',
       headers : new HttpHeaders().append('content-Type','application/json')
     });
@@ -25,7 +25,7 @@ export class UserService {
   }
 
   login(body: any){
-    return this.http.post('http://localhost:4000/user/login',body,{
+    return this.http.post('http://localhost:4000/auth/login',body,{
       observe: 'body',
       headers : new HttpHeaders().append('content-Type','application/json'),
       withCredentials: true
@@ -35,7 +35,7 @@ export class UserService {
 
   }
   logintest(body: any){
-    return this.http.post('http://localhost:4000/user/profile',body,{
+    return this.http.post('http://localhost:4000/auth/profile',body,{
       observe: 'body',
       headers : new HttpHeaders().append('content-Type','application/json'),
       withCredentials: true
