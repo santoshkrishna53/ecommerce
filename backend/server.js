@@ -10,7 +10,7 @@ var session = require('express-session');
 const app = express();
 var passport = require('passport');
 var MemoryStore =session.MemoryStore;
-const sessionPaths = ['/auth/profile', '/auth/login','/api/kart'];
+const sessionPaths = ['/auth/profile', '/auth/login','/api/kart','/auth/logout'];
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -61,7 +61,7 @@ const api = require('../backend/routes/api.route')
 const auth = require('./routes/auth.route');
 app.use('/api', api)
 // app.use('/user',userroute)
-app.use('/auth',auth)
+
 
 // Create port
 
@@ -69,9 +69,10 @@ const port = process.env.PORT || 4000;
 const server = app.listen(port, () => {
   console.log('Connected to port ' + port)
 })
-
+require('./passport');
 app.use(passport.initialize());
 app.use(passport.session());
+app.use('/auth',auth);
 
 // Find 404 and hand over to error handler
 app.use((req, res, next) => {
