@@ -8,21 +8,25 @@ import {UserService} from "../user.service";
   styleUrls: ['./cart.component.scss']
 })
 export class CartComponent implements OnInit {
-  products=[];
+  products;
 
-  constructor(private share: SharedDataService,private userservuce: UserService) { }
+  constructor(private share: SharedDataService,private userservice: UserService) { }
 
   ngOnInit() {
-    const product = this.share.getProducts();
-    product.subscribe((pro) => {
-            for(var data in pro){
-              this.products.push(pro[data]);
-            }
-            console.log(this.products)
-        });
+    this.getkart()
 
   
   
   }
+  getkart(){
+    console.log("get kart function")
+    this.userservice.getkart('').subscribe(
+    data => {console.log("kart");this.products = data;console.log(data)},
+    error =>{ console.log(error)}
+  )}
+  refresh(){
+    this.getkart()
+  }
+  
 
 }
