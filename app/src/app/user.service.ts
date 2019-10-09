@@ -15,7 +15,7 @@ export class UserService {
   constructor(private http: HttpClient) { }
   public login(body: any): any {
     this.http.post("http://localhost:4000/auth/login",body,{headers : new HttpHeaders().append('content-Type','application/json'),withCredentials: true}).subscribe(data  => {
-     if(data){this.user.next(data);}
+     if(data){this.user.next(data);this.profil.next(data);}
     },error  => {console.log("Error", error);});
     return this.user.asObservable()
    
