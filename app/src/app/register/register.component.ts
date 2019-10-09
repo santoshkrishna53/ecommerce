@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { trigger, transition, style, animate } from '@angular/animations';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { UserService } from '../user.service';
-
+import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -32,8 +32,19 @@ import { UserService } from '../user.service';
   ]
 })
 export class RegisterComponent implements OnInit {
+  user: any;
+  usersubs: Subscription;
 
-  constructor(private userservice: UserService) { }
+
+  constructor(private userservice: UserService) {
+    this.usersubs = this.userservice.profile().subscribe(data => {
+      if(data){
+        this.user = data;
+        // this.user.push(data);
+        // console.log(data);
+      }
+    })
+   }
 
   ngOnInit() {
   }
@@ -63,11 +74,11 @@ export class RegisterComponent implements OnInit {
     console.log('NOT VSALID')
   }
   logintest(){
-    this.userservice.logintest(JSON.stringify(this.loginform.value))
-    .subscribe(
-      data => {console.log("session da");console.log(data)},
-      error =>{ console.log(error)}
-    )
+    const profile = this.userservice.profile();
+      profile.subscribe((user_details) => {
+       console.log(user_details);
+      });
+   
   }
   login(){
     
@@ -75,11 +86,8 @@ export class RegisterComponent implements OnInit {
 
       console.log("valid");
       this.userservice.login(JSON.stringify(this.loginform.value))
-      .subscribe(
-        data => {console.log(data)},
-        error =>{ console.log(error)}
-      )
-
+      
+     
      
       
 

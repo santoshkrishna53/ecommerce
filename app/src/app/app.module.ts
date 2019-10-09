@@ -18,7 +18,9 @@ import { ProductsComponent } from './products/products.component';
 import { CartComponent } from './cart/cart.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {UserService} from './user.service';
-
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { SidebarModule } from 'ng-sidebar';
+import {MatTableModule} from '@angular/material/table';
 
 
 @NgModule({
@@ -28,6 +30,7 @@ import {UserService} from './user.service';
     RegisterComponent,
     ProductsComponent,
     CartComponent,
+    
    
   ],
   imports: [
@@ -44,6 +47,9 @@ import {UserService} from './user.service';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    FontAwesomeModule,
+    SidebarModule.forRoot(),
+    MatTableModule
     
     
 

@@ -1,5 +1,44 @@
-<app-header></app-header>
-<app-cart></app-cart>
+<!-- <app-header></app-header> -->
+<ng-sidebar-container style="height: 100vh !important;">
+    <ng-sidebar [(opened)]="_opened" [mode]="push" [dock]="dock" [dockedSize]="'50px'">
+        <div style="display: flex; flex-direction: column;height: 100% !important;width: 300px">
+            <div style="flex: 1;align-items: center;vertical-align: middle">
+                    <button mat-button class="sidenav_button">products</button>
+
+            </div>
+            <div style="flex: 1">
+                    <button mat-button class="sidenav_button">login/signup</button>
+            </div>
+            <div style="flex: 1">
+                    <button mat-button class="sidenav_button">kart</button>
+            </div>
+            <div style="flex: 1">
+                    <button mat-button class="sidenav_button">Basic</button>
+            </div>
+            <div style="flex: 1">
+                    <button mat-button class="sidenav_button">Basic</button>
+            </div>
+            
+            
+            
+           
+            
+
+
+        </div>
+
+    </ng-sidebar>
+    <div ng-sidebar-content>
+        <button (click)="_toggleSidebar()">Toggle sidebar</button>
+        <app-cart></app-cart>
 <app-register></app-register>
+<app-products></app-products>
 <router-outlet></router-outlet>
+    </div>
+
+
+</ng-sidebar-container>
+
+
+
 

@@ -10,13 +10,19 @@ var session = require('express-session');
 const app = express();
 var passport = require('passport');
 var MemoryStore =session.MemoryStore;
-const sessionPaths = ['/auth/profile', '/auth/login','/api/kart','/auth/logout'];
+const sessionPaths = ['/auth/profile', '/auth/login','/api/kart','/auth/logout','/auth/updatekart'];
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(sessionPaths,session({secret: 'max', saveUninitialized: false, resave: false, store: new MemoryStore(),name: 'app.sid'}));
+app.use(sessionPaths,session({
+   secret: 'max', saveUninitialized: false, resave: false, store: new MemoryStore(),name: 'app.sid',
+   cookie:{
+      // maxAge:36000,
+      httpOnly:false,
+   }
+}));
 // Connecting with mongo db
 mongoose.Promise = global.Promise;
 mongoose.connect(dbConfig.db, {

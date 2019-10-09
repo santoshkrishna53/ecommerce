@@ -23,6 +23,7 @@ auth.post('/register',function(req,res,next){adduser(req,res);})
 auth.post('/login',loginUnser);
 auth.post('/profile',isValidUser,function(req,res,next){return res.status(200).json(req.user);});
 auth.get('/logout',isValidUser, function(req,res,next){req.logout();return res.status(200).json({message:'Logout Success'});});
+auth.post('/updatekart',isValidUser,updateUser);
 
 
 
@@ -35,10 +36,9 @@ function loginUnser(req,res,next){
     if (!user) { return res.status(501).json(info); }
     req.logIn(user, function(err) {
       if (err) { return res.status(501).json(err); }
-      return res.status(200).json({message:'Login Success'});
+      return res.status(200).json(req.user);
     });
   })(req, res, next);
-
 }
 
 async function adduser(req,res){
@@ -58,6 +58,27 @@ catch(err){
 function isValidUser(req,res,next){
   if(req.isAuthenticated()){next();} 
   else return res.status(401).json({message:'Unauthorized Request'});
+}
+
+async function updateUser(req,res){
+  var id = {_id: req.user._id};
+  var update = {$set: req.body};
+  // console.log("user id",req.user._id);
+  
+  // console.log(req.body[0])
+  // kart = req.user.cart;
+  
+  // console.log("kart");
+  // console.log(kart);
+  User.findByIdAndUpdate(req.user._id,{$set : { cart: req.body}},function(err,doc){
+    if(err){console.log(err)}
+    if(doc){
+      console.log(doc)
+    }
+  });
+  // console.log("aftre update");
+  // console.log(req.user);
+  res.status(200).json(req.user);
 }
 
 module.exports = auth;

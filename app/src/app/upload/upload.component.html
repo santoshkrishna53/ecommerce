@@ -1,0 +1,30 @@
+upload products here <br>
+
+
+<mat-form-field>
+        
+        <input matInput placeholder="Product name" #name required>
+</mat-form-field><br>
+<mat-form-field>
+        
+        <input matInput placeholder="quantity" #q required>
+</mat-form-field><br>
+<mat-form-field>
+        
+        <input matInput placeholder="disc" #dc required>
+</mat-form-field><br>
+<mat-form-field>
+        
+        <input matInput placeholder="price" #p required>
+</mat-form-field><br>
+<mat-form-field>
+        
+        <input matInput placeholder="dis" #d required>
+</mat-form-field><br>
+<input
+  style="display: none"
+  type="file" (change)="onFileChanged($event)"
+  #fileInput required><br>
+<button (click)="inp">select Image</button><br>
+<button (click)="up">Upload!</button><br>
+<button mat-raised-button color="primary" (click)="update">Update database</button>

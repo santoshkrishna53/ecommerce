@@ -20,6 +20,9 @@ let product = new Schema({
       },
       Discount : {
          type: Number
+      },
+      Image : {
+         type: String
       }
 }, {
    collection: 'products'
