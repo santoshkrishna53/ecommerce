@@ -14,26 +14,30 @@ import {UserService} from './../user.service';
 export class ProductsComponent implements OnInit {
   products: any[] = [];
   kart: any[] = [];
-  auth: boolean = false;
+  auth = false;
   subscription: Subscription;
   usersubs: Subscription;
+  authsubs: Subscription;
   constructor( private httpClient: HttpClient,private share: SharedDataService, private UserService: UserService) {
     this.subscription = this.share.getProducts().subscribe(data => {
       this.products.push(data);
       console.log(this.products);
     })
-    this.subscription = this.UserService.profile().subscribe(product => {
+    this.usersubs = this.UserService.profile().subscribe(product => {
       if (product) {
-        
         this.kart.pop();
         this.kart.push(product.cart);
         // console.log(this.kart);
         this.auth = true;
+        
       }
     }
     )
-   
-   }
+    this.authsubs = this.UserService.user_status().subscribe(data => {
+      console.log(data)
+      this.auth = data;
+    })
+  }
   
   
   

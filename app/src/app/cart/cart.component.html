@@ -1,5 +1,5 @@
 <p>cart works!</p>
-<div class="row" style="max-width: 50%;margin: auto;">
+<!-- <div class="row" style="max-width: 50%;margin: auto;">
     <div class="col-md-12">
         <table class="table">
             <thead>
@@ -23,7 +23,7 @@
     </div>
 
 
-</div>
+</div> -->
 
 angular table shit
 
@@ -63,3 +63,62 @@ angular table shit
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     <tr mat-footer-row *matFooterRowDef="displayedColumns"></tr>
 </table>
+<mat-tab-group style="width: 70% !important;">
+        <mat-tab label="Adress">
+            <form class="example-form">
+                        
+                      
+                        <table class="example-full-width" cellspacing="0"><tr>
+                          <td><mat-form-field class="example-full-width">
+                            <input matInput placeholder="First name">
+                          </mat-form-field></td>
+                          <td><mat-form-field class="example-full-width">
+                            <input matInput placeholder="Long Last Name That Will Be Truncated">
+                          </mat-form-field></td>
+                        </tr></table>
+                      
+                        <p>
+                          <mat-form-field class="example-full-width">
+                            <textarea matInput placeholder="Address">1600 Amphitheatre Pkwy</textarea>
+                          </mat-form-field>
+                          <mat-form-field class="example-full-width">
+                            <textarea matInput placeholder="Address 2"></textarea>
+                          </mat-form-field>
+                        </p>
+                      
+                        <table class="example-full-width" cellspacing="0"><tr>
+                          <td><mat-form-field class="example-full-width">
+                            <input matInput placeholder="City">
+                          </mat-form-field></td>
+                          <td><mat-form-field class="example-full-width">
+                            <input matInput placeholder="State">
+                          </mat-form-field></td>
+                          <td><mat-form-field class="example-full-width">
+                            <input matInput #postalCode maxlength="6" placeholder="Postal Code" value="94043">
+                            <mat-hint align="end">{{postalCode.value.length}} / 6</mat-hint>
+                          </mat-form-field></td>
+                        </tr></table>
+                      </form>
+            
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        </mat-tab>
+        <mat-tab label="Payment"> Content 2 </mat-tab>
+        <mat-tab label="Confirmation"> Content 3 </mat-tab>
+</mat-tab-group>
+

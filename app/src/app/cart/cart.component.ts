@@ -14,6 +14,7 @@ export class CartComponent implements OnDestroy {
   subscription: Subscription;
   trash = faTrash;
   total;
+  total_items;
   displayedColumns: string[] = ['item', 'cost', 'Quantity','Price','Action'];
 
   constructor(private share: SharedDataService, private userservice: UserService) {
@@ -22,10 +23,16 @@ export class CartComponent implements OnDestroy {
         this.products.pop();
         this.products.push(data.cart);
         console.log(data);
-        this.total = 0
+        this.total = 0;
+        this.total_items = 0;
         for(var i in this.products[0]){
           this.total+=(this.products[0][i].quantity*this.products[0][i].price)
+          this.total_items+=(this.products[0][i].quantity);
+          console.log(this.products[0][i].quantity);
+          console.log(this.total_items);
         }
+        
+        this.share.set_cart_total(this.total_items);
       }
     }
     )

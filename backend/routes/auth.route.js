@@ -22,7 +22,7 @@ auth.route('/').get((req, res) => {
 auth.post('/register',function(req,res,next){adduser(req,res);})
 auth.post('/login',loginUnser);
 auth.post('/profile',isValidUser,function(req,res,next){return res.status(200).json(req.user);});
-auth.get('/logout',isValidUser, function(req,res,next){req.logout();return res.status(200).json({message:'Logout Success'});});
+auth.post('/logout',isValidUser, function(req,res,next){req.logout();return res.status(200).json({message:'Logout Success'});});
 auth.post('/updatekart',isValidUser,updateUser);
 
 
