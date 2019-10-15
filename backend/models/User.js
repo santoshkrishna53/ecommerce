@@ -16,7 +16,8 @@ var users = new Schema({
     cart: {
         type: Array
      },
-     adresses: {
+    
+     orders : {
         type: Array
      }
 }, {

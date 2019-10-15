@@ -3,6 +3,7 @@ import { trigger, transition, style, animate } from '@angular/animations';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { UserService } from '../user.service';
 import { Subscription } from 'rxjs';
+import {MatSnackBar} from '@angular/material/snack-bar';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -36,7 +37,7 @@ export class RegisterComponent implements OnInit {
   usersubs: Subscription;
 
 
-  constructor(private userservice: UserService) {
+  constructor(private userservice: UserService,private _snackBar: MatSnackBar) {
     this.usersubs = this.userservice.profile().subscribe(data => {
       if(data){
         this.user = data;
@@ -56,7 +57,7 @@ export class RegisterComponent implements OnInit {
 
   })
   loginform: FormGroup = new FormGroup({
-    username: new FormControl(null,Validators.required),
+    username: new FormControl(null,[Validators.email,Validators.required]),
     password: new FormControl(null,Validators.required)
   })
   signup(){
@@ -71,7 +72,7 @@ export class RegisterComponent implements OnInit {
       )
 
     }
-    console.log('NOT VSALID')
+    this._snackBar.open('please enter proper deatils');
   }
   logintest(){
     const profile = this.userservice.profile();
@@ -83,14 +84,18 @@ export class RegisterComponent implements OnInit {
   login(){
     
     if(this.loginform.valid){
-
       console.log("valid");
       this.userservice.login(JSON.stringify(this.loginform.value))
-      
-     
-     
-      
+      if(this.user == undefined){
+        
+        
 
+      }
+    }
+    else{
+      this._snackBar.open('Please entre proper email adress','',{
+        duration: 3000
+      });
     }
   }
 }

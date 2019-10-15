@@ -1,5 +1,12 @@
 table {
-    width: 70%;
+    width: 75%;
+    vertical-align: middle;
+    margin: auto;
+  }
+  .heigth {
+    height: 100% !important;
+    padding-right: 0 !important;
+    padding-left: 0 !important;
   }
   
   tr.mat-footer-row {
@@ -17,4 +24,16 @@ table {
   
   td {
     padding-right: 8px;
+  }
+  .center {
+  margin: auto;
+  // width: 50%;
+  // padding: 10px; 
+  text-align: center;
+  justify-self: center;
+  justify-items: center;
+  }
+  mat-form-field {
+   width: 50% !important; 
+    // text-align: center;
   }

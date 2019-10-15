@@ -1,29 +1,6 @@
-<!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark nav">
-    <a class="navbar-brand" href="#">Navbar</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-  
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-        </li>
-       
-        
-        
-      </ul>
-      <form class="form-inline my-2 my-lg-0 mr-auto">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-        
-      </form>
-      <ul class="navbar-nav"><li class="nav-item"><a  class="nav-link" href="#">Kart</a></li><li class="nav-item"><a  class="nav-link" href="#">Login/Signup</a></li></ul>
-    </div>
-  </nav>
-   -->
 
 
-   <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+   <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" style="max-width: 100% !important;">
     <a class="navbar-brand" href="#">Smart Electronics</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -53,12 +30,12 @@
            <a class="nav-link" routerLink="/cart" routerLinkActive="active" [matBadge]="cart_total"><i class="fa fa-cart-plus fa-2x" aria-hidden="true"></i></a>
 
         </li>
-        <li class="nav-item dropdown" style="margin-right: 15px;" *ngIf="user_status">
+        <li class="nav-item dropdown" style="margin-right: 100px;" *ngIf="user_status">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <i class="fa fa-user-circle-o fa-2x" aria-hidden="true"></i>
               </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <a class="dropdown-item" >Profile</a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" >
+                <a class="dropdown-item"   routerLink="/dashboard" routerLinkActive="active" >Profile</a>
                 <a class="dropdown-item" (click)="Logout()">Logout</a>
                 
                

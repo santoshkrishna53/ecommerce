@@ -1,124 +1,153 @@
-<p>cart works!</p>
-<!-- <div class="row" style="max-width: 50%;margin: auto;">
-    <div class="col-md-12">
-        <table class="table">
-            <thead>
-                <tr>
-                    <th scope="col">Product</th>
-                    <th scope="col">Price</th>
-                    <th scope="col">Quantity</th>
-                    <th scope="col">Total</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let product of products[0]">
-                    <th>{{product.name}}</th>
-                    <th scope="col">{{product.price}}</th>
-                    <th scope="col">{{product.quantity}}</th>
-                    <th scope="col">{{product.price * product.quantity}}</th>
-                    <button mat-raised-button color="warn" (click)="remove_item(product)">remove</button>
-                </tr>
-            </tbody>
-        </table>
+<div class="row heigth">
+  <div class="col-lg-8 col-md-12 heigth">
+    <div class="row center">
+      <h1 class="center">
+        Your Cart
+      </h1>
+
+    </div>
+    <div class="row">
+      <table mat-table [dataSource]="products[0]" class="mat-elevation-z8">
+        <!-- Item Column -->
+        <ng-container matColumnDef="item">
+          <th mat-header-cell *matHeaderCellDef> <strong>Item</strong> </th>
+          <td mat-cell *matCellDef="let product"> {{product.name}} </td>
+          <td mat-footer-cell *matFooterCellDef> Total </td>
+        </ng-container>
+
+        <!-- Cost Column -->
+        <ng-container matColumnDef="cost">
+          <th mat-header-cell *matHeaderCellDef> <strong>Cost</strong> </th>
+          <td mat-cell *matCellDef="let product"> {{product.price}} </td>
+          <td mat-footer-cell *matFooterCellDef> Total no of Products </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Quantity">
+          <th mat-header-cell *matHeaderCellDef> <Strong>Quantity</Strong> </th>
+          <td mat-cell *matCellDef="let product">{{product.quantity}} </td>
+          <td mat-footer-cell *matFooterCellDef>{{total_items}}</td>
+
+        </ng-container>
+        <ng-container matColumnDef="Action">
+          <th mat-header-cell *matHeaderCellDef><strong> Action </strong> </th>
+          <td mat-cell *matCellDef="let product"><button mat-raised-button color="warn"
+              (click)="remove_item(product)">remove</button> </td>
+          <td mat-footer-cell *matFooterCellDef></td>
+        </ng-container>
+        <ng-container matColumnDef="Price">
+          <th mat-header-cell *matHeaderCellDef><strong> Effective price </strong></th>
+          <td mat-cell *matCellDef="let product"> {{product.price * product.quantity}} </td>
+          <td mat-footer-cell *matFooterCellDef>{{total}} </td>
+        </ng-container>
+
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        <tr mat-footer-row *matFooterRowDef="displayedColumns"></tr>
+      </table>
+    </div>
+    <div class="row">
+      <h1 class="center" style="margin-bottom: 50px;margin-top: 50px;">
+        Payment Methods
+      </h1>
+    </div>
+    <div class="row ">
+      <div class="col-lg-2"></div>
+      <div class="col-lg-8">
+          <mat-accordion>
+              <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    Credict/debit Cards
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <mat-form-field>
+                  <mat-label>Name on Card</mat-label><input matInput placeholder="Santhosh Krishna" >
+                </mat-form-field><br>
+                <mat-form-field>
+                  <mat-label>Card Number</mat-label><input matInput #Cardnumber maxlength="10" placeholder="517507">
+                  <mat-hint align="end">{{Cardnumber.value.length}} / 10</mat-hint>
+                </mat-form-field><br>
+                <mat-form-field>
+                  <mat-label>CVV</mat-label><input matInput type="password" placeholder="***" maxlength="3">
+                </mat-form-field><br>
+              </mat-expansion-panel>
+              <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    Online Wallets
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+               
+                <mat-radio-group id="Wallets">
+                  <mat-radio-button value="Paytm">
+                    Paytm
+                  </mat-radio-button><br>
+                  <mat-radio-button value="Google Pay">
+                    Google Pay
+                  </mat-radio-button><br>
+                  <mat-radio-button value="Phone Pay">
+                    Phone Pay
+                  </mat-radio-button><br>
+                </mat-radio-group>
+              </mat-expansion-panel>
+            </mat-accordion>
+
+      </div>
+      <div class="col-lg-2"></div>
+     
+
+
+
     </div>
 
+  </div>
+  <div class="col-lg-4 col-md-12 center heigth">
+    <div class="row center" >
+      <h1 style="text-align: center;" class="center">
+        Billing Information
+      </h1>
 
-</div> -->
-
-angular table shit
-
-<table mat-table [dataSource]="products[0]" class="mat-elevation-z8">
-    <!-- Item Column -->
-    <ng-container matColumnDef="item">
-        <th mat-header-cell *matHeaderCellDef> Item </th>
-        <td mat-cell *matCellDef="let product"> {{product.name}} </td>
-        <td mat-footer-cell *matFooterCellDef> Total </td>
-    </ng-container>
-
-    <!-- Cost Column -->
-    <ng-container matColumnDef="cost">
-        <th mat-header-cell *matHeaderCellDef> Cost </th>
-        <td mat-cell *matCellDef="let product"> {{product.price}} </td>
-        <td mat-footer-cell *matFooterCellDef> test </td>
-    </ng-container>
-
-    <ng-container matColumnDef="Quantity">
-        <th mat-header-cell *matHeaderCellDef> Quantity </th>
-        <td mat-cell *matCellDef="let product">{{product.quantity}} </td>
-        <td mat-footer-cell *matFooterCellDef></td>
-
-    </ng-container>
-    <ng-container matColumnDef="Price">
-        <th mat-header-cell *matHeaderCellDef> Effective price </th>
-        <td mat-cell *matCellDef="let product"> {{product.price * product.quantity}} </td>
-        <td mat-footer-cell *matFooterCellDef>{{total}} </td>
-    </ng-container>
-    <ng-container matColumnDef="Action">
-        <th mat-header-cell *matHeaderCellDef> Action </th>
-        <td mat-cell *matCellDef="let product"><button mat-raised-button color="warn" (click)="remove_item(product)">remove</button> </td>
-        <td mat-footer-cell *matFooterCellDef></td>
-    </ng-container>
-
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    <tr mat-footer-row *matFooterRowDef="displayedColumns"></tr>
-</table>
-<mat-tab-group style="width: 70% !important;">
-        <mat-tab label="Adress">
-            <form class="example-form">
-                        
-                      
-                        <table class="example-full-width" cellspacing="0"><tr>
-                          <td><mat-form-field class="example-full-width">
-                            <input matInput placeholder="First name">
-                          </mat-form-field></td>
-                          <td><mat-form-field class="example-full-width">
-                            <input matInput placeholder="Long Last Name That Will Be Truncated">
-                          </mat-form-field></td>
-                        </tr></table>
-                      
-                        <p>
-                          <mat-form-field class="example-full-width">
-                            <textarea matInput placeholder="Address">1600 Amphitheatre Pkwy</textarea>
-                          </mat-form-field>
-                          <mat-form-field class="example-full-width">
-                            <textarea matInput placeholder="Address 2"></textarea>
-                          </mat-form-field>
-                        </p>
-                      
-                        <table class="example-full-width" cellspacing="0"><tr>
-                          <td><mat-form-field class="example-full-width">
-                            <input matInput placeholder="City">
-                          </mat-form-field></td>
-                          <td><mat-form-field class="example-full-width">
-                            <input matInput placeholder="State">
-                          </mat-form-field></td>
-                          <td><mat-form-field class="example-full-width">
-                            <input matInput #postalCode maxlength="6" placeholder="Postal Code" value="94043">
-                            <mat-hint align="end">{{postalCode.value.length}} / 6</mat-hint>
-                          </mat-form-field></td>
-                        </tr></table>
-                      </form>
-            
-
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        </mat-tab>
-        <mat-tab label="Payment"> Content 2 </mat-tab>
-        <mat-tab label="Confirmation"> Content 3 </mat-tab>
-</mat-tab-group>
-
+    </div>
+    <div class="row center">
+      <form [formGroup]="Billing" style="width: 100% !important; " class="center">
+        <mat-form-field>
+            <mat-label>First name</mat-label><input matInput placeholder="Santhosh Krishna" formControlName="FirstName">
+          </mat-form-field><br>
+          <mat-form-field>
+            <mat-label>Last name</mat-label><input matInput placeholder="Last Name" formControlName="LastName">
+          </mat-form-field><br>
+          <mat-form-field>
+            <mat-label>Adress Line 1</mat-label><input matInput placeholder="M block" formControlName="AdressLine1">
+          </mat-form-field><br>
+          <mat-form-field>
+            <mat-label>Adress Line 2</mat-label><input matInput placeholder="Vit" formControlName="AdressLine2">
+          </mat-form-field><br>
+          <mat-form-field>
+            <mat-label>Adress Line 3</mat-label><input matInput placeholder="VIT ROAD" formControlName="AdressLine3">
+          </mat-form-field><br>
+      
+          <mat-form-field>
+            <mat-label>State</mat-label>
+            <mat-select #State required formControlName="State">
+              <mat-option>--</mat-option>
+              <mat-option *ngFor="let state of states" [value]="state">
+                {{state}}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="State.value == '--'">Please choose an State</mat-error>
+      
+          </mat-form-field><br>
+          <mat-form-field>
+            <mat-label>Pin Code</mat-label><input matInput #postalCode maxlength="6" placeholder="517507" formControlName="PinCode">
+            <mat-hint align="end">{{postalCode.value.length}} / 6</mat-hint>
+          </mat-form-field><br>
+          </form>
+      
+  
+    </div>
+    <div class="row center" style="margin-top: 50px;">
+      <button class="center" (click)="Billing_()"mat-raised-button color="primary">Confirm Order</button>
+    </div>
+  </div>
+</div>

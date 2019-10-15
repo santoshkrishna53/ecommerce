@@ -1,5 +1,5 @@
-<app-header></app-header>
-<ng-sidebar-container style="height: 100vh !important;margin-top: 80px !important;">
+<app-header style="max-width: 100% !important;"></app-header>
+<!-- <ng-sidebar-container style="height: 100vh !important;margin-top: 80px !important;">
     <ng-sidebar [(opened)]="_opened" [mode]="push" [dock]="dock" [dockedSize]="'50px'">
         <div style="display: flex; flex-direction: column;height: 100% !important;width: 300px">
             <div style="flex: 1;align-items: center;vertical-align: middle">
@@ -25,13 +25,18 @@
     </ng-sidebar>
     <div ng-sidebar-content>
         <button (click)="_toggleSidebar()">Toggle sidebar</button>
-        <router-outlet></router-outlet>
+        
        
 
     </div>
 
 
-</ng-sidebar-container>
+</ng-sidebar-container> -->
+<div style="height: 86vh !important;margin-top: 80px !important;max-width: 100% !important;">
+    <router-outlet ></router-outlet>
+</div>
+
+
 
 
 

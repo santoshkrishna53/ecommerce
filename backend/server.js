@@ -10,7 +10,7 @@ var session = require('express-session');
 const app = express();
 var passport = require('passport');
 var MemoryStore =session.MemoryStore;
-const sessionPaths = ['/auth/profile', '/auth/login','/api/kart','/auth/logout','/auth/updatekart'];
+const sessionPaths = ['/auth/profile', '/auth/login','/api/kart','/auth/logout','/auth/updatekart','/auth/billing'];
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));

@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { Subject } from 'rxjs';
+import { areAllEquivalent } from '@angular/compiler/src/output/output_ast';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Injectable({
   providedIn: 'root'
@@ -9,17 +11,18 @@ export class UserService {
   private user = new Subject<any>();
   private profil = new Subject<any>();
   private login_status = new Subject<boolean>();
+  private login_failed = new Subject<boolean>();
   
-  
-  
-
- 
-
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,private _snackBar: MatSnackBar) { }
   public login(body: any): any {
     this.http.post("http://localhost:4000/auth/login",body,{headers : new HttpHeaders().append('content-Type','application/json'),withCredentials: true}).subscribe(data  => {
      if(data){this.user.next(data);this.profil.next(data);this.login_status.next(true)}
-    },error  => {console.log("Error", error);});
+    },error  => {
+      
+      this._snackBar.open('Please Check Credentials','',{
+        duration: 3000
+      });
+  });
     return this.user.asObservable()
    
     
@@ -61,5 +64,13 @@ export class UserService {
   }
   user_status(){
     return this.login_status.asObservable();  
+  }
+  send_billing(data){
+    this.http.post("http://localhost:4000/auth/billing",data,{headers : new HttpHeaders().append('content-Type','application/json'),withCredentials: true}).subscribe(data  => {
+      if(data){this.profile();this._snackBar.open('Order Placed Successfully','',{
+        duration: 3000
+      });}
+     },error  => {console.log("Error", error);});
+
   }
 }

@@ -15,6 +15,7 @@ export class HeaderComponent implements OnInit {
   cart_total = 0;
   status: Subscription;
   cart_total_subs: Subscription;
+  subscription: Subscription;
 
   constructor( private UserService: UserService, private share: SharedDataService) { 
     this.status = this.UserService.user_status().subscribe(data => {
@@ -25,7 +26,18 @@ export class HeaderComponent implements OnInit {
       this.cart_total = data;
       console.log(this.cart_total);
     })
-
+    this.subscription = this.UserService.profile().subscribe(data => {
+      if (data) {
+        var total_items = 0;
+        for(var i in data.cart){
+          total_items+=(data.cart[i].quantity);
+          console.log(total_items);
+        }
+        this.share.set_cart_total(total_items);
+      }
+    }
+    )
+    
   }
 
   ngOnInit() {
