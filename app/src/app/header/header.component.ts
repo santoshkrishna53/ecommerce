@@ -44,8 +44,7 @@ export class HeaderComponent implements OnInit {
   }
   async Logout(){
     this.UserService.logout();
-    console.log("logging out");
-    console.log(this.user_status);
+    
    
   }
 
