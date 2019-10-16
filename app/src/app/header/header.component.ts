@@ -20,18 +20,18 @@ export class HeaderComponent implements OnInit {
   constructor( private UserService: UserService, private share: SharedDataService) { 
     this.status = this.UserService.user_status().subscribe(data => {
       this.user_status = data;
-      console.log(data);
+      
     })
     this.cart_total_subs = this.share.get_cart_total().subscribe(data => {
       this.cart_total = data;
-      console.log(this.cart_total);
+      
     })
     this.subscription = this.UserService.profile().subscribe(data => {
       if (data) {
         var total_items = 0;
         for(var i in data.cart){
           total_items+=(data.cart[i].quantity);
-          console.log(total_items);
+          
         }
         this.share.set_cart_total(total_items);
       }

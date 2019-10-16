@@ -25,11 +25,46 @@ auth.post('/profile',isValidUser,function(req,res,next){return res.status(200).j
 auth.post('/logout',isValidUser, function(req,res,next){req.logout();return res.status(200).json({message:'Logout Success'});});
 auth.post('/updatekart',isValidUser,updateUser);
 auth.post('/billing',isValidUser,BillUser);
+auth.post('/UpdateUser',isValidUser,UpdateUser);
+auth.post('/UpdatePassword',isValidUser,Update_password);
 
 
 
+async function Update_password(req,res){
+  var userr = req.user
+  User.findByIdAndRemove(req.user._id, function(err,doc){
+    if(err){console.log(err)}
+    if(doc){console.log("deleted")}
+  })
+  var user = new User({
+    name : userr.name,
+    email : userr.email,
+    password : User.hashPassword(req.body.newpassword),
+    cart: userr.cart,
+    orders: userr.orders
+})
+try{
+    doc = await user.save();
+    return res.status(201).json(doc);
+}
+catch(err){
+    return res.status(201).json(err);
+}
+ 
+ 
+}
 
 
+
+async function UpdateUser(req,res){
+  console.log(req.body);
+  User.findByIdAndUpdate(req.user._id,{$set: {name: req.body.username,email: req.body.email}},function(err,doc){
+    if(err){console.log(err)}
+    if(doc){console.log(doc)}
+  })
+  res.status(200).json(req.user);
+
+}
 
 async function BillUser(req,res){
   

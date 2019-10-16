@@ -1,14 +1,5 @@
-<div class="row" style="height: 97% !important;">
-    <!-- <div class="col-lg-3" style="padding-left: 15px !important;padding-right: 15px !important;">
-                <mat-card style="height: 100% !important;">
-                    <mat-card class="menu-item">
-                        Your Profile 
-                    </mat-card>
-                    <mat-card class="menu-item">
-                        Your Orders
-                    </mat-card>
-                </mat-card>
-        </div> -->
+<div class="row" style="height: 97% !important;" *ngIf="loaded">
+
     <div class="col-lg-12" style="margin-left: 15px !important;margin-right: 15px !important;">
         <mat-card style="height: 100% !important;max-width: 95% !important;">
             <mat-card style="max-width: 95% !important;">
@@ -18,26 +9,30 @@
                     </h1>
 
                 </div>
-                <div class="row center">
-                    <div class="col-lg-4 center">
-                        name:
-                        <mat-form-field>
-                            <mat-label>{{User.name}}</mat-label><input matInput placeholder="your name">
-                        </mat-form-field>
+                <form [formGroup]="Updateform">
+                    <div class="row center">
+                        <div class="col-lg-4 center">
+                            name:
+                            <mat-form-field>
+                                <mat-label>{{User.name}}</mat-label><input matInput placeholder="your name"
+                                    formControlName="username">
+                            </mat-form-field>
+
+                        </div>
+                        <div class="col-lg-4 center">
+                            email:
+                            <mat-form-field>
+                                <mat-label>{{User.email}}</mat-label><input matInput placeholder="Your Email"
+                                    formControlName="email">
+                            </mat-form-field>
+                        </div>
+                        <div class="col-lg-4 center">
+                            <button mat-raised-button color="primary" (click)="update()">Update</button>
+
+                        </div>
 
                     </div>
-                    <div class="col-lg-4 center">
-                        email:
-                        <mat-form-field>
-                            <mat-label>{{User.email}}</mat-label><input matInput placeholder="Your Email">
-                        </mat-form-field>
-                    </div>
-                    <div class="col-lg-4 center">
-                        <button mat-raised-button color="primary">Update</button>
-
-                    </div>
-
-                </div>
+                </form>
 
 
 
@@ -45,12 +40,44 @@
             </mat-card>
             <mat-card style="max-width: 95% !important; margin-top: 15px !important;">
                 <div class="row center">
+                    <h1>Upadte Password</h1>
+                </div>
+                <form [formGroup]="UpdatePass">
+                    <div class="row center">
+                        <div class="col-lg-4 center">
+                           Old password
+                            <mat-form-field>
+                                <mat-label>Old Password</mat-label><input matInput placeholder="****" type="password"
+                                    formControlName="oldpassword">
+                            </mat-form-field>
+
+                        </div>
+                        <div class="col-lg-4 center">
+                            new Passord
+                            <mat-form-field>
+                                <mat-label>new Passord</mat-label><input matInput placeholder="******"
+                                    formControlName="newpassword">
+                            </mat-form-field>
+                        </div>
+                        <div class="col-lg-4 center">
+                            <button mat-raised-button color="primary" (click)="update_password()">Update password</button>
+
+                        </div>
+
+                    </div>
+
+                </form>
+            </mat-card>
+
+
+            <mat-card style="max-width: 95% !important; margin-top: 15px !important;">
+                <div class="row center">
                     <h1 class="center">
                         Your Orders
                     </h1>
                 </div>
 
-                
+
                 <div class="row center">
                     <table class="table">
                         <thead>
@@ -65,18 +92,18 @@
                             <tr *ngFor="let item of User.orders;let i = index">
                                 <th scope="row">{{i}}</th>
                                 <td>
-                                        <span *ngFor="let name of item.cart;let i = index">
-                                                {{i+1}}.{{name}}<br>
-                                            </span>
+                                    <span *ngFor="let name of item.cart;let i = index">
+                                        {{i+1}}.{{name}}<br>
+                                    </span>
 
                                 </td>
                                 <td>
-                                        {{item.billing.AdressLine1}},<br>
-                                        {{item.billing.AdressLine2}},<br>
-                                        {{item.billing.AdressLine3}}<br>
+                                    {{item.billing.AdressLine1}},<br>
+                                    {{item.billing.AdressLine2}},<br>
+                                    {{item.billing.AdressLine3}}<br>
 
                                 </td>
-                                
+
                             </tr>
                         </tbody>
                     </table>

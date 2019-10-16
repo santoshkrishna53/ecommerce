@@ -41,8 +41,7 @@ export class RegisterComponent implements OnInit {
     this.usersubs = this.userservice.profile().subscribe(data => {
       if(data){
         this.user = data;
-        // this.user.push(data);
-        // console.log(data);
+        
       }
     })
    }
@@ -61,30 +60,28 @@ export class RegisterComponent implements OnInit {
     password: new FormControl(null,Validators.required)
   })
   signup(){
-    console.log(this.registerForm)
+   
     if(this.registerForm.valid){
 
-      console.log("valid");
+     
       this.userservice.register(JSON.stringify(this.registerForm.value))
       .subscribe(
-        data => {console.log(data);},
-        error =>{ console.log(error)}
+        data => {this._snackBar.open('Account created successfully','',{duration: 3000});},
+        error =>{this._snackBar.open(error,'',{duration: 3000});}
       )
 
     }
-    this._snackBar.open('please enter proper deatils');
+    else{
+      this._snackBar.open('please enter proper deatils','',{duration: 3000});
   }
-  logintest(){
-    const profile = this.userservice.profile();
-      profile.subscribe((user_details) => {
-       console.log(user_details);
-      });
-   
-  }
+
+    }
+    
+  
   login(){
     
     if(this.loginform.valid){
-      console.log("valid");
+      
       this.userservice.login(JSON.stringify(this.loginform.value))
       if(this.user == undefined){
         

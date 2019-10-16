@@ -21,20 +21,19 @@ export class ProductsComponent implements OnInit {
   constructor( private httpClient: HttpClient,private share: SharedDataService, private UserService: UserService) {
     this.subscription = this.share.getProducts().subscribe(data => {
       this.products.push(data);
-      console.log(this.products);
+      
     })
     this.usersubs = this.UserService.profile().subscribe(product => {
       if (product) {
         this.kart.pop();
         this.kart.push(product.cart);
-        // console.log(this.kart);
-        this.auth = true;
+        
         
       }
     }
     )
     this.authsubs = this.UserService.user_status().subscribe(data => {
-      console.log(data)
+     
       this.auth = data;
     })
   }
@@ -43,8 +42,7 @@ export class ProductsComponent implements OnInit {
   
   ngOnInit(){}
   async addtokart(product){
-    // console.log(product.quantity);
-    // console.log(this.kart[0]);
+   
     var flag = false;
     for(var pro in this.kart[0]){
       if(this.kart[0][pro]._id == product._id){
@@ -53,7 +51,7 @@ export class ProductsComponent implements OnInit {
       }
     }
     if(flag){
-      console.log("product in");
+   
       this.kart[0].quantity = this.kart[0].quantity + 1;
     }
     else{
@@ -63,13 +61,7 @@ export class ProductsComponent implements OnInit {
     let result = await this.UserService.updatekart(this.kart[0]);
     
     }
-    // var temp = this.kart[0];
-    // console.log(temp);
-    // temp.push(product)
-   
-    // // var temp = this.user[0].cart.push(product)
-    // // console.log(temp);
-    // this.UserService.updatekart(temp);
+    
   }
   
   

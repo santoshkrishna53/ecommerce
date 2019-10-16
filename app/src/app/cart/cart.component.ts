@@ -71,14 +71,13 @@ export class CartComponent implements OnDestroy {
       if (data) {
         this.products.pop();
         this.products.push(data.cart);
-        console.log(data);
+      
         this.total = 0;
         this.total_items = 0;
         for(var i in this.products[0]){
           this.total+=(this.products[0][i].quantity*this.products[0][i].price)
           this.total_items+=(this.products[0][i].quantity);
-          console.log(this.products[0][i].quantity);
-          console.log(this.total_items);
+         
         }
         
         this.share.set_cart_total(this.total_items);
@@ -90,7 +89,7 @@ export class CartComponent implements OnDestroy {
     this.subscription.unsubscribe();
   }
   remove_item(product){
-    console.log(product);
+   
     var i = this.products[0].indexOf(product);
     if(this.products[0][i].quantity == 1){
       this.products[0].splice(i,1);
@@ -105,18 +104,18 @@ export class CartComponent implements OnDestroy {
     for(var i in this.products[0]){
       billing_items.push(this.products[0][i].name)
     }
-    console.log(this.Billing)
+    
     if(this.Billing.valid){
       var data = {
         cart: billing_items,
         billing: this.Billing.value
       }
-      console.log(data)
+      
       this.userservice.send_billing(JSON.stringify(data));
 
     }
     else{
-      console.log("invada")
+      
       this._snackBar.open('Invalid billing details','',{
         duration: 3000
       });
