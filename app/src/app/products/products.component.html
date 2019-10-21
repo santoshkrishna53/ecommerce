@@ -1,7 +1,9 @@
-<div class="row">
-        <div class="col-md-4 main-card"  *ngFor="let product of products[0]">
+<div class="row" style="padding-left: 150px;">
+    <span *ngFor="let product of products[0]" style="padding: 25px !important;">
+        <div class="main-card" *ngIf="test(product)" style="min-width: 350px !important;">
+           
                 <figure class="card card-product">
-                    <div class="img-wrap"><img src="https://img.icons8.com/officel/100/000000/book.png"></div>
+                    <div class="img-wrap" style="padding-bottom: 5px !important;padding-top: 5px !important;padding: 5px !important;"><img src={{product.Image}} height="100%" width="100%"></div>
                     <figcaption class="info-wrap">
                             <h4 class="title">{{product.name}}</h4>
                             <p class="desc">{{product.description}}</p>
@@ -13,11 +15,12 @@
                     <div class="bottom-wrap">
                         <button mat-raised-button color="primary" *ngIf="auth" (click)="addtokart(product)" class="float-right">add to kart</button>
                         <div class="price-wrap h5">
-                            <span class="price-new">{{product.price}}</span> <del class="price-old">$1980</del>
+                            <span class="price-new">${{product.price}}</span> <del class="price-old">${{product.price - 1000}}</del>
                         </div> <!-- price-wrap.// -->
                     </div> <!-- bottom-wrap.// -->
                 </figure>
+               
             </div> <!-- col // -->
-
+            </span>
 </div>
 

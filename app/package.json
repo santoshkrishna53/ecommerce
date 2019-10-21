@@ -25,6 +25,8 @@
     "@fortawesome/fontawesome-svg-core": "^1.2.25",
     "@fortawesome/free-solid-svg-icons": "^5.11.2",
     "base64-img": "^1.0.4",
+    "image-to-base64": "^2.0.1",
+    "imageurl-base64": "^1.0.0",
     "ng-sidebar": "^9.1.1",
     "rxjs": "~6.4.0",
     "tslib": "^1.9.0",

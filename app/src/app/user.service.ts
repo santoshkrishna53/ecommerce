@@ -44,6 +44,8 @@ export class UserService {
      return this.profil.asObservable()
   }
   updatekart(body: any){
+    console.log("updatekart")
+    console.log(body)
     this.http.post("http://localhost:4000/auth/updatekart",body,{headers : new HttpHeaders().append('content-Type','application/json'),withCredentials: true}).subscribe(data  => {
      if(data){
        this.profile();
@@ -110,5 +112,9 @@ export class UserService {
      });this.logout()
 
   }
+  addpro(data){
+    this.http.post("http://localhost:4000/api/addproduct",data,{headers : new HttpHeaders().append('content-Type','application/json')}).subscribe(data  => {console.log("data sent")})
+  }
+
  
 }

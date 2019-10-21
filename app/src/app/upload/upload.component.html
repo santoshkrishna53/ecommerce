@@ -1,30 +1,8 @@
-upload products here <br>
-
-
-<mat-form-field>
-        
-        <input matInput placeholder="Product name" #name required>
-</mat-form-field><br>
-<mat-form-field>
-        
-        <input matInput placeholder="quantity" #q required>
-</mat-form-field><br>
-<mat-form-field>
-        
-        <input matInput placeholder="disc" #dc required>
-</mat-form-field><br>
-<mat-form-field>
-        
-        <input matInput placeholder="price" #p required>
-</mat-form-field><br>
-<mat-form-field>
-        
-        <input matInput placeholder="dis" #d required>
-</mat-form-field><br>
-<input
-  style="display: none"
-  type="file" (change)="onFileChanged($event)"
-  #fileInput required><br>
-<button (click)="inp">select Image</button><br>
-<button (click)="up">Upload!</button><br>
-<button mat-raised-button color="primary" (click)="update">Update database</button>
+name: <input type="text" id="n" [(ngModel)]="name">
+id: <input type="text" id="id" [(ngModel)]="id">
+quantity: <input type="text" id="q"[(ngModel)]="quantity">
+description: <input type="text" id="d"[(ngModel)]="description">
+Price: <input type="text" id="p"[(ngModel)]="Price">
+Image: <input type="text" id="i"[(ngModel)]="Image"> 
+Category: <input type="text" id="c"[(ngModel)]="Category">
+<button (click)="update()">update</button>

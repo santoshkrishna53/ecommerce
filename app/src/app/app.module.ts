@@ -30,6 +30,7 @@ import { CartComponent } from './cart/cart.component';
 import {UserService} from './user.service';
 import { HeaderComponent } from './header/header.component';
 import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
+import {UploadComponent} from './upload/upload.component'
 
 
 const appRoutes: Routes = [
@@ -37,6 +38,8 @@ const appRoutes: Routes = [
   { path: 'products',      component: ProductsComponent },
   { path: 'cart',      component: CartComponent },
   { path: 'dashboard',      component: UserDashboardComponent },
+  { path: '',      component: ProductsComponent },
+  { path: 'upload',      component: UploadComponent },
 
 ]
 
@@ -49,6 +52,7 @@ const appRoutes: Routes = [
     ProductsComponent,
     CartComponent,
     UserDashboardComponent,
+    UploadComponent
     
    
   ],

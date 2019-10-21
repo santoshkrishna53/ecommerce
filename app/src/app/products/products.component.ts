@@ -15,20 +15,21 @@ export class ProductsComponent implements OnInit {
   products: any[] = [];
   kart: any[] = [];
   auth = false;
+  filter: any[] = [false,false,false];
+  filtersubs: Subscription;
   subscription: Subscription;
   usersubs: Subscription;
   authsubs: Subscription;
   constructor( private httpClient: HttpClient,private share: SharedDataService, private UserService: UserService) {
     this.subscription = this.share.getProducts().subscribe(data => {
-      this.products.push(data);
+      if(this.test(data)){console.log("refresh");this.products.push(data);}
+      
       
     })
     this.usersubs = this.UserService.profile().subscribe(product => {
       if (product) {
         this.kart.pop();
         this.kart.push(product.cart);
-        
-        
       }
     }
     )
@@ -36,13 +37,21 @@ export class ProductsComponent implements OnInit {
      
       this.auth = data;
     })
+    this.filtersubs = this.share.get_filter().subscribe(data => {
+      this.filter = data;
+    })
   }
   
   
   
   ngOnInit(){}
-  async addtokart(product){
-   
+  async addtokart(pp){
+    var product = {
+      name: pp.name,
+      price: pp.price,
+      quantity: pp.quantity,
+      _id: pp._id
+    }
     var flag = false;
     for(var pro in this.kart[0]){
       if(this.kart[0][pro]._id == product._id){
@@ -60,6 +69,23 @@ export class ProductsComponent implements OnInit {
     }
     let result = await this.UserService.updatekart(this.kart[0]);
     
+    }
+    test(data){
+     
+      if(this.filter[0] && this.filter[1] && this.filter[2]){
+       
+        return true
+      }
+      if(!this.filter[0] && !this.filter[1] && !this.filter[2]){
+       
+        return true
+      }
+      if(data.Category == "M" && this.filter[0]){return true;}
+      if(data.Category == "L" && this.filter[1]){return true;}
+      if(data.Category == "D" && this.filter[2]){return true;}
+      else{return false}
+      
+      
     }
     
   }

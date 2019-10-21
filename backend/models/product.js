@@ -6,7 +6,7 @@ let product = new Schema({
    name: {
       type: String
    },
-   id: {
+   product_id: {
       type: Number
    },
    quantity: {
@@ -15,13 +15,13 @@ let product = new Schema({
     description: {
         type: String
      },
-     Price: {
+     price: {
       type: Number
       },
-      Discount : {
-         type: Number
-      },
       Image : {
+         type: String
+      },
+      Category : {
          type: String
       }
 }, {

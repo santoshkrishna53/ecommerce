@@ -17,9 +17,9 @@
             Categories
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <mat-checkbox class="dropdown-item" [(ngModel)]="checked">Mobile</mat-checkbox>
-            <mat-checkbox class="dropdown-item" [(ngModel)]="checked">laptop</mat-checkbox>
-            <mat-checkbox class="dropdown-item" [(ngModel)]="checked">Desktop</mat-checkbox>
+            <mat-checkbox class="dropdown-item" [(ngModel)]="Mobile" (change)="changed()">Mobile</mat-checkbox>
+            <mat-checkbox class="dropdown-item" [(ngModel)]="laptop" (change)="changed()">laptop</mat-checkbox>
+            <mat-checkbox class="dropdown-item" [(ngModel)]="desktop" (change)="changed()">Desktop</mat-checkbox>
            
           </div>
         </li>

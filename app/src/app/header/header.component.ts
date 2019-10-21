@@ -9,7 +9,9 @@ import { SharedDataService } from '../shared-data.service';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  checked  = false;
+  Mobile  = false;
+  laptop  = false;
+  desktop  = false;
   labelPosition = 'after';
   user_status = false;
   cart_total = 0;
@@ -46,6 +48,9 @@ export class HeaderComponent implements OnInit {
     this.UserService.logout();
     
    
+  }
+  changed(){
+    this.share.set_filter([this.Mobile,this.laptop,this.desktop]);
   }
 
 }
