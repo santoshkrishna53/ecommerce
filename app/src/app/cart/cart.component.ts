@@ -18,7 +18,7 @@ export class CartComponent implements OnDestroy {
     AdressLine2: new FormControl(null,Validators.required),
     AdressLine3: new FormControl(null,Validators.required),
     State: new FormControl(null,Validators.required),
-    PinCode: new FormControl(null,Validators.required),
+    PinCode: new FormControl(null,Validators.required)
     
 
 

@@ -139,7 +139,7 @@
       
           </mat-form-field><br>
           <mat-form-field>
-            <mat-label>Pin Code</mat-label><input matInput #postalCode maxlength="6" placeholder="517507" formControlName="PinCode">
+            <mat-label>Pin Code</mat-label><input matInput #postalCode maxlength="6" minlength="6" placeholder="517507" formControlName="PinCode">
             <mat-hint align="end">{{postalCode.value.length}} / 6</mat-hint>
           </mat-form-field><br>
           </form>

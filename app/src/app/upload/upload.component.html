@@ -1,8 +1,72 @@
-name: <input type="text" id="n" [(ngModel)]="name">
+<!-- name: <input type="text" id="n" [(ngModel)]="name">
 id: <input type="text" id="id" [(ngModel)]="id">
 quantity: <input type="text" id="q"[(ngModel)]="quantity">
 description: <input type="text" id="d"[(ngModel)]="description">
 Price: <input type="text" id="p"[(ngModel)]="Price">
 Image: <input type="text" id="i"[(ngModel)]="Image"> 
-Category: <input type="text" id="c"[(ngModel)]="Category">
-<button (click)="update()">update</button>
+Category: <input type="text" id="c"[(ngModel)]="Category"> -->
+<div class="container" style="margin: auto;width: 800px !important;">
+    <div class="row">
+        <div class="col-lg-8">
+            <mat-form-field>
+                <mat-label>Name</mat-label><input matInput type="text" id="n" [(ngModel)]="name">
+            </mat-form-field>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-8">
+            <mat-form-field>
+                <mat-label>ID</mat-label><input matInput type="text" id="id" [(ngModel)]="id">
+            </mat-form-field>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-8">
+            <mat-form-field>
+                <mat-label>quantity:</mat-label> <input matInput type="text" id="q" [(ngModel)]="quantity">
+            </mat-form-field>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-8">
+            <mat-form-field>
+                <mat-label>description:</mat-label> <input matInput type="text" id="d" [(ngModel)]="description">
+            </mat-form-field>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-8">
+            <mat-form-field>
+                <mat-label>Price: </mat-label><input matInput type="text" id="p" [(ngModel)]="Price">
+            </mat-form-field>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-8">
+            <mat-form-field>
+                <mat-label>Image:</mat-label><input matInput type="text" id="i" [(ngModel)]="Image">
+            </mat-form-field>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-8">
+            <mat-form-field>
+                <mat-label>Category:</mat-label><input matInput type="text" id="c" [(ngModel)]="Category">
+            </mat-form-field>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <button mat-raised-button color="primary" (click)="update()">Submit</button>
+
+        </div>
+
+    </div>
+</div>
