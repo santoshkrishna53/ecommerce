@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { UserService} from './user.service';
+
 import { Observable, Subject } from 'rxjs';
 
 @Injectable({
@@ -11,12 +11,16 @@ export class SharedDataService {
   private user = new Subject<any>();
   private cart_items_number = new Subject<any>();
   private filter = new Subject<any>();
-  constructor( private httpClient: HttpClient,private userservice: UserService ) { 
+  constructor( private httpClient: HttpClient ) { 
     this.filter.next([false,false,false])
   }
   getProducts(){
     this.httpClient.post("http://localhost:4000/api/prod",'').subscribe(data  => {this.products.next(data)},error  => {console.log("Error", error);});
     return this.products.asObservable();
+  }
+  updateProducts(){
+    this.httpClient.post("http://localhost:4000/api/prod",'').subscribe(data  => {this.products.next(data)},error  => {console.log("Error", error);});
+
   }
   get_cart_total(){
     return this.cart_items_number.asObservable();

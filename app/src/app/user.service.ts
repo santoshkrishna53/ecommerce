@@ -4,6 +4,7 @@ import { Subject } from 'rxjs';
 import { areAllEquivalent } from '@angular/compiler/src/output/output_ast';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import { RouterModule, Routes,Router } from '@angular/router';
+import {SharedDataService} from './shared-data.service'
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,7 @@ export class UserService {
   private login_status = new Subject<boolean>();
   private login_failed = new Subject<boolean>();
   
-  constructor(private http: HttpClient,private _snackBar: MatSnackBar,private router: Router) { }
+  constructor(private SharedDataService: SharedDataService,private http: HttpClient,private _snackBar: MatSnackBar,private router: Router) { }
   public login(body: any): any {
     this.http.post("http://localhost:4000/auth/login",body,{headers : new HttpHeaders().append('content-Type','application/json'),withCredentials: true}).subscribe(data  => {
      if(data){this.user.next(data);this.profil.next(data);this.login_status.next(true);this.router.navigate(['/products']); this._snackBar.open('Successfully logined','',{
@@ -115,6 +116,10 @@ export class UserService {
   addpro(data){
     this.http.post("http://localhost:4000/api/addproduct",data,{headers : new HttpHeaders().append('content-Type','application/json')}).subscribe(data  => {console.log("data sent")})
   }
+  updateproductquantity(data){
+    this.http.post("http://localhost:4000/auth/Updateproductquantity",data,{headers : new HttpHeaders().append('content-Type','application/json'),withCredentials: true}).subscribe(data  => {
+      if(data){this.profile();this.SharedDataService.updateProducts()}
+     },error  => {});
 
- 
+  }
 }

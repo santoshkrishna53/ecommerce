@@ -52,6 +52,7 @@ export class ProductsComponent implements OnInit {
       quantity: pp.quantity,
       _id: pp._id
     }
+    pp.quantity-=1;
     var flag = false;
     for(var pro in this.kart[0]){
       if(this.kart[0][pro]._id == product._id){
@@ -67,7 +68,8 @@ export class ProductsComponent implements OnInit {
       product.quantity = 1;
       this.kart[0].push(product);
     }
-    let result = await this.UserService.updatekart(this.kart[0]);
+    await this.UserService.updateproductquantity(product)
+    await this.UserService.updatekart(this.kart[0]);
     
     }
     test(data){
