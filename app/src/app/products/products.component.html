@@ -14,7 +14,7 @@
                     </figcaption>
                     <div class="bottom-wrap">
                         <span *ngIf="product.quantity>0"><button mat-raised-button color="primary" *ngIf="auth" (click)="addtokart(product)" class="float-right">add to kart</button></span>
-                        <span *ngIf="!(product.quantity>0)" style="color: red;" class="float-right">house full</span>
+                        <span *ngIf="!(product.quantity>0)" style="color: red;" class="float-right">out of Stock</span>
                         
                         <div class="price-wrap h5">
                             <span class="price-new">${{product.price}}</span> <del class="price-old">${{product.price - 1000}}</del>
