@@ -167,7 +167,7 @@ var AppComponent = /** @class */ (function () {
         this._opened = false;
         this.dock = true;
         this.push = 'push';
-        this.configUrl = "http://localhost:4000/api/prod";
+        this.configUrl = "https://server17bce0547.herokuapp.com/api/prod";
     }
     AppComponent.prototype.ngOnInit = function () { };
     AppComponent.prototype.get_products = function () {
@@ -849,12 +849,12 @@ var SharedDataService = /** @class */ (function () {
     }
     SharedDataService.prototype.getProducts = function () {
         var _this = this;
-        this.httpClient.post("http://localhost:4000/api/prod", '').subscribe(function (data) { _this.products.next(data); }, function (error) { console.log("Error", error); });
+        this.httpClient.post("https://server17bce0547.herokuapp.com/api/prod", '').subscribe(function (data) { _this.products.next(data); }, function (error) { console.log("Error", error); });
         return this.products.asObservable();
     };
     SharedDataService.prototype.updateProducts = function () {
         var _this = this;
-        this.httpClient.post("http://localhost:4000/api/prod", '').subscribe(function (data) { _this.products.next(data); }, function (error) { console.log("Error", error); });
+        this.httpClient.post("https://server17bce0547.herokuapp.com/api/prod", '').subscribe(function (data) { _this.products.next(data); }, function (error) { console.log("Error", error); });
     };
     SharedDataService.prototype.get_cart_total = function () {
         return this.cart_items_number.asObservable();
@@ -1083,7 +1083,7 @@ var UserService = /** @class */ (function () {
     }
     UserService.prototype.login = function (body) {
         var _this = this;
-        this.http.post("http://localhost:4000/auth/login", body, { headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]().append('content-Type', 'application/json'), withCredentials: true }).subscribe(function (data) {
+        this.http.post("https://server17bce0547.herokuapp.com/auth/login", body, { headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]().append('content-Type', 'application/json'), withCredentials: true }).subscribe(function (data) {
             if (data) {
                 _this.user.next(data);
                 _this.profil.next(data);
@@ -1102,7 +1102,7 @@ var UserService = /** @class */ (function () {
     };
     UserService.prototype.profile = function () {
         var _this = this;
-        this.http.post("http://localhost:4000/auth/profile", "", { headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]().append('content-Type', 'application/json'), withCredentials: true }).subscribe(function (data) {
+        this.http.post("https://server17bce0547.herokuapp.com/auth/profile", "", { headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]().append('content-Type', 'application/json'), withCredentials: true }).subscribe(function (data) {
             if (data) {
                 _this.profil.next(data);
                 _this.login_status.next(true);
@@ -1117,20 +1117,20 @@ var UserService = /** @class */ (function () {
         var _this = this;
         console.log("updatekart");
         console.log(body);
-        this.http.post("http://localhost:4000/auth/updatekart", body, { headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]().append('content-Type', 'application/json'), withCredentials: true }).subscribe(function (data) {
+        this.http.post("https://server17bce0547.herokuapp.com/auth/updatekart", body, { headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]().append('content-Type', 'application/json'), withCredentials: true }).subscribe(function (data) {
             if (data) {
                 _this.profile();
             }
         }, function (error) { });
     };
     UserService.prototype.register = function (body) {
-        return this.http.post('http://localhost:4000/auth/register', body, {
+        return this.http.post('https://server17bce0547.herokuapp.com/auth/register', body, {
             observe: 'body',
             headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]().append('content-Type', 'application/json')
         });
     };
     UserService.prototype.getkart = function (body) {
-        return this.http.post('http://localhost:4000/api/kart', body, {
+        return this.http.post('https://server17bce0547.herokuapp.com/api/kart', body, {
             observe: 'body',
             headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]().append('content-Type', 'application/json'),
             withCredentials: true
@@ -1138,7 +1138,7 @@ var UserService = /** @class */ (function () {
     };
     UserService.prototype.logout = function () {
         var _this = this;
-        this.http.post("http://localhost:4000/auth/logout", "", { headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]().append('content-Type', 'application/json'), withCredentials: true }).subscribe(function (data) {
+        this.http.post("https://server17bce0547.herokuapp.com/auth/logout", "", { headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]().append('content-Type', 'application/json'), withCredentials: true }).subscribe(function (data) {
             if (data) {
                 _this.profil.next(null);
                 _this.user.next(null);
@@ -1153,7 +1153,7 @@ var UserService = /** @class */ (function () {
     };
     UserService.prototype.send_billing = function (data) {
         var _this = this;
-        this.http.post("http://localhost:4000/auth/billing", data, { headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]().append('content-Type', 'application/json'), withCredentials: true }).subscribe(function (data) {
+        this.http.post("https://server17bce0547.herokuapp.com/auth/billing", data, { headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]().append('content-Type', 'application/json'), withCredentials: true }).subscribe(function (data) {
             if (data) {
                 _this.profile();
                 _this._snackBar.open('Order Placed Successfully', '', {
@@ -1163,7 +1163,7 @@ var UserService = /** @class */ (function () {
         }, function (error) { });
     };
     UserService.prototype.update_user = function (data) {
-        this.http.post("http://localhost:4000/auth/UpdateUser", data, { headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]().append('content-Type', 'application/json'), withCredentials: true }).subscribe(function (data) {
+        this.http.post("https://server17bce0547.herokuapp.com/auth/UpdateUser", data, { headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]().append('content-Type', 'application/json'), withCredentials: true }).subscribe(function (data) {
             if (data) { }
         }, function (error) { });
         this.logout();
@@ -1173,7 +1173,7 @@ var UserService = /** @class */ (function () {
     };
     UserService.prototype.update_password = function (data) {
         var _this = this;
-        this.http.post("http://localhost:4000/auth/UpdatePassword", data, { headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]().append('content-Type', 'application/json'), withCredentials: true }).subscribe(function (data) {
+        this.http.post("https://server17bce0547.herokuapp.com/auth/UpdatePassword", data, { headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]().append('content-Type', 'application/json'), withCredentials: true }).subscribe(function (data) {
             if (data) {
                 _this.profile();
                 _this._snackBar.open('Updated Successfully, please login again', '', {
@@ -1189,11 +1189,11 @@ var UserService = /** @class */ (function () {
         this.logout();
     };
     UserService.prototype.addpro = function (data) {
-        this.http.post("http://localhost:4000/api/addproduct", data, { headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]().append('content-Type', 'application/json') }).subscribe(function (data) { console.log("data sent"); });
+        this.http.post("https://server17bce0547.herokuapp.com/api/addproduct", data, { headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]().append('content-Type', 'application/json') }).subscribe(function (data) { console.log("data sent"); });
     };
     UserService.prototype.updateproductquantity = function (data) {
         var _this = this;
-        this.http.post("http://localhost:4000/auth/Updateproductquantity", data, { headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]().append('content-Type', 'application/json'), withCredentials: true }).subscribe(function (data) {
+        this.http.post("https://server17bce0547.herokuapp.com/auth/Updateproductquantity", data, { headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]().append('content-Type', 'application/json'), withCredentials: true }).subscribe(function (data) {
             if (data) {
                 _this.profile();
                 _this.SharedDataService.updateProducts();

@@ -17,7 +17,7 @@ export class UserService {
   
   constructor(private SharedDataService: SharedDataService,private http: HttpClient,private _snackBar: MatSnackBar,private router: Router) { }
   public login(body: any): any {
-    this.http.post("http://localhost:4000/auth/login",body,{headers : new HttpHeaders().append('content-Type','application/json'),withCredentials: true}).subscribe(data  => {
+    this.http.post("https://server17bce0547.herokuapp.com/auth/login",body,{headers : new HttpHeaders().append('content-Type','application/json'),withCredentials: true}).subscribe(data  => {
      if(data){this.user.next(data);this.profil.next(data);this.login_status.next(true);this.router.navigate(['/products']); this._snackBar.open('Successfully logined','',{
       duration: 3000
     });}
@@ -33,7 +33,7 @@ export class UserService {
     
   }
   profile() {
-    this.http.post("http://localhost:4000/auth/profile","",{headers : new HttpHeaders().append('content-Type','application/json'),withCredentials: true}).subscribe(data  => {
+    this.http.post("https://server17bce0547.herokuapp.com/auth/profile","",{headers : new HttpHeaders().append('content-Type','application/json'),withCredentials: true}).subscribe(data  => {
       if(data){this.profil.next(data);this.login_status.next(true)}
      },error  => {
       
@@ -47,7 +47,7 @@ export class UserService {
   updatekart(body: any){
     console.log("updatekart")
     console.log(body)
-    this.http.post("http://localhost:4000/auth/updatekart",body,{headers : new HttpHeaders().append('content-Type','application/json'),withCredentials: true}).subscribe(data  => {
+    this.http.post("https://server17bce0547.herokuapp.com/auth/updatekart",body,{headers : new HttpHeaders().append('content-Type','application/json'),withCredentials: true}).subscribe(data  => {
      if(data){
        this.profile();
        
@@ -55,14 +55,14 @@ export class UserService {
     },error  => {});
   }
   register(body: any){
-    return this.http.post('http://localhost:4000/auth/register',body,{
+    return this.http.post('https://server17bce0547.herokuapp.com/auth/register',body,{
       observe: 'body',
       headers : new HttpHeaders().append('content-Type','application/json')
     });
 
   }
   getkart(body: any){
-    return this.http.post('http://localhost:4000/api/kart',body,{
+    return this.http.post('https://server17bce0547.herokuapp.com/api/kart',body,{
       observe: 'body',
       headers : new HttpHeaders().append('content-Type','application/json'),
       withCredentials: true
@@ -70,7 +70,7 @@ export class UserService {
     });
   }
   logout(){
-    this.http.post("http://localhost:4000/auth/logout","",{headers : new HttpHeaders().append('content-Type','application/json'),withCredentials: true}).subscribe(data  => {
+    this.http.post("https://server17bce0547.herokuapp.com/auth/logout","",{headers : new HttpHeaders().append('content-Type','application/json'),withCredentials: true}).subscribe(data  => {
       if(data){this.profil.next(null);this.user.next(null);}
      },error  => {});
      this._snackBar.open('logged out','',{ duration: 3000 });
@@ -82,7 +82,7 @@ export class UserService {
     return this.login_status.asObservable();  
   }
   send_billing(data){
-    this.http.post("http://localhost:4000/auth/billing",data,{headers : new HttpHeaders().append('content-Type','application/json'),withCredentials: true}).subscribe(data  => {
+    this.http.post("https://server17bce0547.herokuapp.com/auth/billing",data,{headers : new HttpHeaders().append('content-Type','application/json'),withCredentials: true}).subscribe(data  => {
       if(data){this.profile();this._snackBar.open('Order Placed Successfully','',{
         duration: 3000
       });}
@@ -90,7 +90,7 @@ export class UserService {
 
   }
   update_user(data){
-    this.http.post("http://localhost:4000/auth/UpdateUser",data,{headers : new HttpHeaders().append('content-Type','application/json'),withCredentials: true}).subscribe(data  => {
+    this.http.post("https://server17bce0547.herokuapp.com/auth/UpdateUser",data,{headers : new HttpHeaders().append('content-Type','application/json'),withCredentials: true}).subscribe(data  => {
       if(data){}
       },error  => {});
      this.logout();
@@ -101,7 +101,7 @@ export class UserService {
 
   }
   update_password(data){
-    this.http.post("http://localhost:4000/auth/UpdatePassword",data,{headers : new HttpHeaders().append('content-Type','application/json'),withCredentials: true}).subscribe(data  => {
+    this.http.post("https://server17bce0547.herokuapp.com/auth/UpdatePassword",data,{headers : new HttpHeaders().append('content-Type','application/json'),withCredentials: true}).subscribe(data  => {
       if(data){this.profile();this._snackBar.open('Updated Successfully, please login again','',{
         duration: 5000
       });}
@@ -114,10 +114,10 @@ export class UserService {
 
   }
   addpro(data){
-    this.http.post("http://localhost:4000/api/addproduct",data,{headers : new HttpHeaders().append('content-Type','application/json')}).subscribe(data  => {console.log("data sent")})
+    this.http.post("https://server17bce0547.herokuapp.com/api/addproduct",data,{headers : new HttpHeaders().append('content-Type','application/json')}).subscribe(data  => {console.log("data sent")})
   }
   updateproductquantity(data){
-    this.http.post("http://localhost:4000/auth/Updateproductquantity",data,{headers : new HttpHeaders().append('content-Type','application/json'),withCredentials: true}).subscribe(data  => {
+    this.http.post("https://server17bce0547.herokuapp.com/auth/Updateproductquantity",data,{headers : new HttpHeaders().append('content-Type','application/json'),withCredentials: true}).subscribe(data  => {
       if(data){this.profile();this.SharedDataService.updateProducts()}
      },error  => {});
 

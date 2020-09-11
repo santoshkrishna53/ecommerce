@@ -164,7 +164,7 @@ let AppComponent = class AppComponent {
         this._opened = false;
         this.dock = true;
         this.push = 'push';
-        this.configUrl = "http://localhost:4000/api/prod";
+        this.configUrl = "https://server17bce0547.herokuapp.com/api/prod";
     }
     ngOnInit() { }
     get_products() {
@@ -810,11 +810,11 @@ let SharedDataService = class SharedDataService {
         this.filter.next([false, false, false]);
     }
     getProducts() {
-        this.httpClient.post("http://localhost:4000/api/prod", '').subscribe(data => { this.products.next(data); }, error => { console.log("Error", error); });
+        this.httpClient.post("https://server17bce0547.herokuapp.com/api/prod", '').subscribe(data => { this.products.next(data); }, error => { console.log("Error", error); });
         return this.products.asObservable();
     }
     updateProducts() {
-        this.httpClient.post("http://localhost:4000/api/prod", '').subscribe(data => { this.products.next(data); }, error => { console.log("Error", error); });
+        this.httpClient.post("https://server17bce0547.herokuapp.com/api/prod", '').subscribe(data => { this.products.next(data); }, error => { console.log("Error", error); });
     }
     get_cart_total() {
         return this.cart_items_number.asObservable();
@@ -1038,7 +1038,7 @@ let UserService = class UserService {
         this.login_failed = new rxjs__WEBPACK_IMPORTED_MODULE_3__["Subject"]();
     }
     login(body) {
-        this.http.post("http://localhost:4000/auth/login", body, { headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]().append('content-Type', 'application/json'), withCredentials: true }).subscribe(data => {
+        this.http.post("https://server17bce0547.herokuapp.com/auth/login", body, { headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]().append('content-Type', 'application/json'), withCredentials: true }).subscribe(data => {
             if (data) {
                 this.user.next(data);
                 this.profil.next(data);
@@ -1056,7 +1056,7 @@ let UserService = class UserService {
         return this.user.asObservable();
     }
     profile() {
-        this.http.post("http://localhost:4000/auth/profile", "", { headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]().append('content-Type', 'application/json'), withCredentials: true }).subscribe(data => {
+        this.http.post("https://server17bce0547.herokuapp.com/auth/profile", "", { headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]().append('content-Type', 'application/json'), withCredentials: true }).subscribe(data => {
             if (data) {
                 this.profil.next(data);
                 this.login_status.next(true);
@@ -1070,27 +1070,27 @@ let UserService = class UserService {
     updatekart(body) {
         console.log("updatekart");
         console.log(body);
-        this.http.post("http://localhost:4000/auth/updatekart", body, { headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]().append('content-Type', 'application/json'), withCredentials: true }).subscribe(data => {
+        this.http.post("https://server17bce0547.herokuapp.com/auth/updatekart", body, { headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]().append('content-Type', 'application/json'), withCredentials: true }).subscribe(data => {
             if (data) {
                 this.profile();
             }
         }, error => { });
     }
     register(body) {
-        return this.http.post('http://localhost:4000/auth/register', body, {
+        return this.http.post('https://server17bce0547.herokuapp.com/auth/register', body, {
             observe: 'body',
             headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]().append('content-Type', 'application/json')
         });
     }
     getkart(body) {
-        return this.http.post('http://localhost:4000/api/kart', body, {
+        return this.http.post('https://server17bce0547.herokuapp.com/api/kart', body, {
             observe: 'body',
             headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]().append('content-Type', 'application/json'),
             withCredentials: true
         });
     }
     logout() {
-        this.http.post("http://localhost:4000/auth/logout", "", { headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]().append('content-Type', 'application/json'), withCredentials: true }).subscribe(data => {
+        this.http.post("https://server17bce0547.herokuapp.com/auth/logout", "", { headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]().append('content-Type', 'application/json'), withCredentials: true }).subscribe(data => {
             if (data) {
                 this.profil.next(null);
                 this.user.next(null);
@@ -1104,7 +1104,7 @@ let UserService = class UserService {
         return this.login_status.asObservable();
     }
     send_billing(data) {
-        this.http.post("http://localhost:4000/auth/billing", data, { headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]().append('content-Type', 'application/json'), withCredentials: true }).subscribe(data => {
+        this.http.post("https://server17bce0547.herokuapp.com/auth/billing", data, { headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]().append('content-Type', 'application/json'), withCredentials: true }).subscribe(data => {
             if (data) {
                 this.profile();
                 this._snackBar.open('Order Placed Successfully', '', {
@@ -1114,7 +1114,7 @@ let UserService = class UserService {
         }, error => { });
     }
     update_user(data) {
-        this.http.post("http://localhost:4000/auth/UpdateUser", data, { headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]().append('content-Type', 'application/json'), withCredentials: true }).subscribe(data => {
+        this.http.post("https://server17bce0547.herokuapp.com/auth/UpdateUser", data, { headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]().append('content-Type', 'application/json'), withCredentials: true }).subscribe(data => {
             if (data) { }
         }, error => { });
         this.logout();
@@ -1123,7 +1123,7 @@ let UserService = class UserService {
         });
     }
     update_password(data) {
-        this.http.post("http://localhost:4000/auth/UpdatePassword", data, { headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]().append('content-Type', 'application/json'), withCredentials: true }).subscribe(data => {
+        this.http.post("https://server17bce0547.herokuapp.com/auth/UpdatePassword", data, { headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]().append('content-Type', 'application/json'), withCredentials: true }).subscribe(data => {
             if (data) {
                 this.profile();
                 this._snackBar.open('Updated Successfully, please login again', '', {
@@ -1139,10 +1139,10 @@ let UserService = class UserService {
         this.logout();
     }
     addpro(data) {
-        this.http.post("http://localhost:4000/api/addproduct", data, { headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]().append('content-Type', 'application/json') }).subscribe(data => { console.log("data sent"); });
+        this.http.post("https://server17bce0547.herokuapp.com/api/addproduct", data, { headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]().append('content-Type', 'application/json') }).subscribe(data => { console.log("data sent"); });
     }
     updateproductquantity(data) {
-        this.http.post("http://localhost:4000/auth/Updateproductquantity", data, { headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]().append('content-Type', 'application/json'), withCredentials: true }).subscribe(data => {
+        this.http.post("https://server17bce0547.herokuapp.com/auth/Updateproductquantity", data, { headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]().append('content-Type', 'application/json'), withCredentials: true }).subscribe(data => {
             if (data) {
                 this.profile();
                 this.SharedDataService.updateProducts();

@@ -15,11 +15,11 @@ export class SharedDataService {
     this.filter.next([false,false,false])
   }
   getProducts(){
-    this.httpClient.post("http://localhost:4000/api/prod",'').subscribe(data  => {this.products.next(data)},error  => {console.log("Error", error);});
+    this.httpClient.post("https://server17bce0547.herokuapp.com/api/prod",'').subscribe(data  => {this.products.next(data)},error  => {console.log("Error", error);});
     return this.products.asObservable();
   }
   updateProducts(){
-    this.httpClient.post("http://localhost:4000/api/prod",'').subscribe(data  => {this.products.next(data)},error  => {console.log("Error", error);});
+    this.httpClient.post("https://server17bce0547.herokuapp.com/api/prod",'').subscribe(data  => {this.products.next(data)},error  => {console.log("Error", error);});
 
   }
   get_cart_total(){

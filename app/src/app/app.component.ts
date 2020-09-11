@@ -14,7 +14,7 @@ export class AppComponent implements OnInit {
   products;
   dock = true;
   push = 'push';
-  configUrl = "http://localhost:4000/api/prod";
+  configUrl = "https://server17bce0547.herokuapp.com/api/prod";
   constructor(private http: HttpClient) { }
   ngOnInit() {}
   async get_products(){
