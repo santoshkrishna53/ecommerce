@@ -1,7 +1,7 @@
-# ecommerce
-a eCommerce website for IWP project
+# e-Commerce
+an e-Commerce website for IWP project
 
-# Instalation instructions 
+# Installation instructions 
 install Node.js
 install the app  npm install
 run the server nodeman. /server.js
