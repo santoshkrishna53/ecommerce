@@ -1,5 +1,5 @@
 # ecommerce
-a eCommerce website for IWP project
+An Ecommerce website for the IWP project
 
 # Instalation instructions 
 install Node.js
